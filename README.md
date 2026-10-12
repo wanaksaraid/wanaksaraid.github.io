@@ -1,1 +1,0 @@
-# wanaksaraid.github.io
