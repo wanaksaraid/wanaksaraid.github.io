@@ -19,7 +19,7 @@
                     },
                     colors: {
                         wana: {
-                            green: '#66cc00', // Hijau Cerah Vibrant
+                            green: '#66cc00', // Hijau Cerah
                             dark: '#1a1a1a',
                             yellow: '#ffde00',
                             gray: '#f3f4f6'
@@ -66,7 +66,7 @@
 </head>
 <body class="bg-white text-gray-800 antialiased pt-20">
 
-    <nav class="fixed w-full top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <nav id="main-nav" class="fixed w-full top-0 z-50 bg-white border-b border-gray-200 shadow-sm transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <a href="#home" class="flex-shrink-0 flex items-center gap-3 cursor-pointer select-none" ondblclick="window.showLoginModal()" title="Klik 2x untuk Admin Login">
@@ -106,6 +106,7 @@
 
     <main id="app-container" class="min-h-screen">
         
+        <!-- === PAGE: HOME === -->
         <section id="home" class="page-section active">
             <div class="relative h-[80vh] bg-gray-900 flex items-center">
                 <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Hutan" class="absolute inset-0 w-full h-full object-cover opacity-60">
@@ -113,22 +114,12 @@
                 
                 <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                     <div class="max-w-3xl">
-                        <div class="inline-block bg-wana-yellow text-black font-bold px-4 py-1 mb-4 uppercase text-sm">
-                            #UntukBumi
-                        </div>
-                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none mb-6">
-                            MENYELARASKAN ILMU, INDUSTRI & HUKUM
-                        </h1>
-                        <p class="text-xl text-gray-200 mb-8 font-sans max-w-2xl">
-                            Menjembatani kesenjangan antara idealisme akademik, realitas praktik industri, dan implementasi regulasi tata kelola hutan Indonesia.
-                        </p>
+                        <div class="inline-block bg-wana-yellow text-black font-bold px-4 py-1 mb-4 uppercase text-sm">#UntukBumi</div>
+                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-none mb-6">MENYELARASKAN ILMU, INDUSTRI & HUKUM</h1>
+                        <p class="text-xl text-gray-200 mb-8 font-sans max-w-2xl">Menjembatani kesenjangan antara idealisme akademik, realitas praktik industri, dan implementasi regulasi tata kelola hutan Indonesia.</p>
                         <div class="flex flex-wrap gap-4">
-                            <a href="#tentang" class="inline-block bg-wana-yellow text-black font-heading text-xl px-8 py-3 hover:bg-yellow-400 transition-colors">
-                                KENALI KAMI
-                            </a>
-                            <a href="#kegiatan" class="inline-block bg-white/10 backdrop-blur-sm border-2 border-white text-white font-heading text-xl px-8 py-3 hover:bg-white hover:text-black transition-all">
-                                AMBIL TINDAKAN
-                            </a>
+                            <a href="#tentang" class="inline-block bg-wana-yellow text-black font-heading text-xl px-8 py-3 hover:bg-yellow-400 transition-colors">KENALI KAMI</a>
+                            <a href="#kegiatan" class="inline-block bg-white/10 backdrop-blur-sm border-2 border-white text-white font-heading text-xl px-8 py-3 hover:bg-white hover:text-black transition-all">AMBIL TINDAKAN</a>
                         </div>
                     </div>
                 </div>
@@ -139,9 +130,7 @@
                     <h2 class="text-3xl font-bold text-black">SOROTAN TERKINI</h2>
                     <a href="#artikel" class="text-wana-green font-bold hover:underline">Lihat semua &rarr;</a>
                 </div>
-                <div id="empty-highlight" class="text-center py-10 hidden">
-                    <p class="text-gray-500 font-sans">Belum ada artikel sorotan.</p>
-                </div>
+                <div id="empty-highlight" class="text-center py-10 hidden"><p class="text-gray-500 font-sans">Belum ada artikel sorotan.</p></div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="home-highlights"></div>
             </div>
 
@@ -157,6 +146,7 @@
             </div>
         </section>
 
+        <!-- === PAGE: TENTANG === -->
         <section id="tentang" class="page-section">
             <div class="bg-gray-100 py-12 md:py-20">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -171,12 +161,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                     <div>
                         <h2 class="text-3xl font-bold border-b-4 border-wana-green inline-block pb-2 mb-6">SEJARAH SINGKAT</h2>
-                        <p class="text-gray-700 leading-relaxed mb-4">
-                            Resmi didirikan pada <strong>10 April 2026</strong> oleh inisiatif sekelompok mahasiswa dari Fakultas Kehutanan dan Lingkungan IPB. Lahirnya komunitas ini dipicu oleh keresahan mendalam terhadap lebarnya jurang pemisah antara idealisme keilmuan kehutanan di ruang akademik, realitas praktik industri di lapangan, serta implementasi regulasi hukum lingkungan yang kerap tidak sinkron.
-                        </p>
-                        <p class="text-gray-700 leading-relaxed">
-                            Berangkat dari kegelisahan tersebut, Wana Aksara dibentuk dengan tujuan yang jelas: menjadi katalisator yang menjembatani ketiga elemen tersebut melalui literasi serta advokasi berbasis data.
-                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-4">Resmi didirikan pada <strong>10 April 2026</strong> oleh inisiatif sekelompok mahasiswa dari Fakultas Kehutanan dan Lingkungan IPB. Lahirnya komunitas ini dipicu oleh keresahan mendalam terhadap lebarnya jurang pemisah antara idealisme keilmuan kehutanan di ruang akademik, realitas praktik industri di lapangan, serta implementasi regulasi hukum lingkungan yang kerap tidak sinkron.</p>
+                        <p class="text-gray-700 leading-relaxed">Berangkat dari kegelisahan tersebut, Wana Aksara dibentuk dengan tujuan yang jelas: menjadi katalisator yang menjembatani ketiga elemen tersebut melalui literasi serta advokasi berbasis data.</p>
                     </div>
                     <div class="bg-gray-50 p-8 border border-gray-200">
                         <h2 class="text-3xl font-bold text-wana-green mb-4">VISI</h2>
@@ -195,6 +181,7 @@
             </div>
         </section>
 
+        <!-- === PAGE: STRUKTUR / TIM KAMI === -->
         <section id="struktur" class="page-section">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div class="text-center mb-16">
@@ -206,6 +193,7 @@
             </div>
         </section>
 
+        <!-- === PAGE: KEGIATAN === -->
         <section id="kegiatan" class="page-section bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div class="flex justify-between items-end border-b-2 border-black pb-4 mb-10">
@@ -219,6 +207,7 @@
             </div>
         </section>
 
+        <!-- === PAGE: ARTIKEL === -->
         <section id="artikel" class="page-section">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div class="border-b-2 border-black pb-4 mb-10">
@@ -232,6 +221,7 @@
             </div>
         </section>
 
+        <!-- === PAGE: KAJIAN === -->
         <section id="kajian" class="page-section bg-gray-900 text-white min-h-screen">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div class="border-b-2 border-gray-700 pb-4 mb-10 flex justify-between items-end">
@@ -246,17 +236,13 @@
             </div>
         </section>
 
+        <!-- === PAGE: BACA ARTIKEL/KAJIAN FULL PAGE === -->
         <section id="baca-halaman" class="page-section bg-gray-50 min-h-screen">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 font-sans bg-white shadow-sm min-h-screen border border-gray-100">
-                
                 <div class="flex justify-between items-center mb-8">
                     <a id="baca-kembali" href="#home" class="text-wana-green font-bold hover:underline flex items-center gap-2">
                         <i class="fas fa-arrow-left"></i> Kembali
                     </a>
-                    <!-- Fitur Copy Link Unik -->
-                    <button onclick="window.copyLink()" class="flex items-center gap-2 text-gray-500 hover:text-wana-green text-sm font-medium transition-colors border border-gray-200 px-3 py-1.5 rounded-sm">
-                        <i class="fas fa-link"></i> Salin Tautan
-                    </button>
                 </div>
                 
                 <div id="baca-kategori" class="inline-block bg-wana-yellow text-black font-bold px-3 py-1 text-xs uppercase mb-4 rounded-sm"></div>
@@ -266,14 +252,26 @@
                     <span class="flex items-center gap-2"><i class="far fa-user text-wana-green"></i> <span id="baca-penulis" class="font-medium text-gray-700"></span></span>
                     <span class="flex items-center gap-2"><i class="far fa-calendar text-wana-green"></i> <span id="baca-tanggal"></span></span>
                     <span class="flex items-center gap-2"><i class="far fa-clock text-wana-green"></i> <span id="baca-waktu"></span></span>
+                    <span class="flex items-center gap-2"><i class="far fa-eye text-wana-green"></i> <span id="baca-views"></span>x Dilihat</span>
                 </div>
                 
                 <img id="baca-img" src="" class="w-full max-h-[60vh] object-cover mb-10 bg-gray-100">
                 <div id="baca-isi" class="text-lg text-gray-800 leading-relaxed whitespace-pre-wrap"></div>
                 <div id="baca-action" class="mt-10 hidden"></div>
+                
+                <!-- Share Buttons -->
+                <div class="mt-12 border-t border-gray-200 pt-8">
+                    <h3 class="font-bold text-gray-700 mb-4 font-heading uppercase tracking-wide">Bagikan Konten Ini:</h3>
+                    <div class="flex gap-3">
+                        <button onclick="window.shareWA()" class="bg-[#25D366] text-white px-4 py-2 rounded-sm font-bold text-sm hover:opacity-90 flex items-center gap-2"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                        <button onclick="window.shareFB()" class="bg-[#1877F2] text-white px-4 py-2 rounded-sm font-bold text-sm hover:opacity-90 flex items-center gap-2"><i class="fab fa-facebook"></i> Facebook</button>
+                        <button onclick="window.copyLink()" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-sm font-bold text-sm hover:opacity-90 flex items-center gap-2"><i class="fas fa-link"></i> Salin Link</button>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- === PAGE: KONTAK === -->
         <section id="kontak" class="page-section">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -284,57 +282,159 @@
                         <div class="space-y-6 font-sans">
                             <div class="flex items-start gap-4">
                                 <div class="mt-1"><i class="fas fa-map-marker-alt text-2xl text-wana-green"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-black">Alamat</h4>
-                                    <p class="text-gray-600">Jl. Ulin Kampus IPB Dramaga<br>Kec. Dramaga, Jawa Barat 16680</p>
-                                </div>
+                                <div><h4 class="font-bold text-lg text-black">Alamat</h4><p class="text-gray-600">Jl. Ulin Kampus IPB Dramaga<br>Kec. Dramaga, Jawa Barat 16680</p></div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <div class="mt-1"><i class="fab fa-whatsapp text-2xl text-wana-green"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-black">WhatsApp</h4>
-                                    <a href="https://wa.me/6281328321991" class="text-gray-600 hover:text-wana-green">0813-2832-1991</a>
-                                </div>
+                                <div><h4 class="font-bold text-lg text-black">WhatsApp</h4><a href="https://wa.me/6281328321991" class="text-gray-600 hover:text-wana-green">0813-2832-1991</a></div>
                             </div>
                             <div class="flex items-start gap-4">
                                 <div class="mt-1"><i class="fab fa-instagram text-2xl text-wana-green"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-black">Instagram</h4>
-                                    <a href="https://instagram.com/wanaksara.id" target="_blank" class="text-gray-600 hover:text-wana-green">@wanaksara.id</a>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-4">
-                                <div class="mt-1"><i class="fas fa-globe text-2xl text-wana-green"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-black">Website</h4>
-                                    <a href="https://wanaksaraid.github.io" class="text-gray-600 hover:text-wana-green">wanaksaraid.github.io</a>
-                                </div>
+                                <div><h4 class="font-bold text-lg text-black">Instagram</h4><a href="https://instagram.com/wanaksara.id" target="_blank" class="text-gray-600 hover:text-wana-green">@wanaksara.id</a></div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="bg-gray-50 p-8 border border-gray-200">
                         <form id="form-pesan" onsubmit="window.submitPesan(event)" class="space-y-4 font-sans">
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-1">Nama Lengkap</label>
-                                <input type="text" id="pesan-nama" required class="w-full px-4 py-3 border border-gray-300 focus:border-wana-green outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-1">Email</label>
-                                <input type="email" id="pesan-email" required class="w-full px-4 py-3 border border-gray-300 focus:border-wana-green outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-1">Pesan</label>
-                                <textarea rows="4" id="pesan-isi" required class="w-full px-4 py-3 border border-gray-300 focus:border-wana-green outline-none"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-wana-green text-white font-heading text-lg py-4 hover:bg-green-600 transition-colors uppercase">
-                                Kirim Pesan
-                            </button>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">Nama Lengkap</label><input type="text" id="pesan-nama" required class="w-full px-4 py-3 border border-gray-300 focus:border-wana-green outline-none"></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">Email</label><input type="email" id="pesan-email" required class="w-full px-4 py-3 border border-gray-300 focus:border-wana-green outline-none"></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">Pesan</label><textarea rows="4" id="pesan-isi" required class="w-full px-4 py-3 border border-gray-300 focus:border-wana-green outline-none"></textarea></div>
+                            <button type="submit" class="w-full bg-wana-green text-white font-heading text-lg py-4 hover:bg-green-600 transition-colors uppercase">Kirim Pesan</button>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- === PAGE: ADMIN DASHBOARD (Penuh, Bukan Modal) === -->
+        <section id="admin" class="page-section bg-gray-100 min-h-screen pt-4 pb-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white shadow-xl rounded-lg overflow-hidden flex flex-col md:flex-row min-h-[80vh] font-sans">
+                    
+                    <!-- Sidebar Dashboard -->
+                    <div class="w-full md:w-64 bg-black text-white shrink-0 flex flex-col">
+                        <div class="p-6 border-b border-gray-800">
+                            <h2 class="font-heading text-2xl text-wana-green tracking-wide">ADMIN PANEL</h2>
+                            <p class="text-gray-400 text-xs mt-1">Wana Aksara Indonesia</p>
+                        </div>
+                        <div class="flex-1 overflow-y-auto py-4">
+                            <button onclick="window.switchTab('tab-dashboard')" id="btn-tab-dashboard" class="w-full text-left px-6 py-3 font-bold text-white border-l-4 border-wana-green bg-gray-900 hover:bg-gray-800 text-sm"><i class="fas fa-chart-pie w-6"></i> Dashboard</button>
+                            <button onclick="window.switchTab('tab-kegiatan')" id="btn-tab-kegiatan" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="far fa-calendar-alt w-6"></i> Kegiatan</button>
+                            <button onclick="window.switchTab('tab-artikel')" id="btn-tab-artikel" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="far fa-newspaper w-6"></i> Artikel</button>
+                            <button onclick="window.switchTab('tab-kajian')" id="btn-tab-kajian" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="fas fa-book w-6"></i> Kajian</button>
+                            <button onclick="window.switchTab('tab-galeri')" id="btn-tab-galeri" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="fas fa-images w-6"></i> Galeri</button>
+                            <button onclick="window.switchTab('tab-pesan')" id="btn-tab-pesan" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="fas fa-envelope w-6"></i> Pesan Masuk</button>
+                        </div>
+                        <div class="p-4 border-t border-gray-800">
+                            <button onclick="window.logoutAdmin()" class="w-full bg-red-600 text-white font-bold py-2 rounded-sm hover:bg-red-700 transition"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                        </div>
+                    </div>
+
+                    <!-- Main Content Area -->
+                    <div class="flex-1 p-6 md:p-8 bg-white h-[80vh] overflow-y-auto">
+                        
+                        <!-- Tab: Dashboard / Statistik -->
+                        <div id="tab-dashboard" class="tab-content block">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Statistik Website</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="bg-blue-50 p-6 rounded-lg border border-blue-100 flex items-center gap-4">
+                                    <div class="bg-blue-500 text-white p-4 rounded-full"><i class="fas fa-globe text-2xl"></i></div>
+                                    <div><p class="text-sm text-gray-500 font-bold">Total Kunjungan Web</p><h4 class="text-3xl font-bold text-black" id="stat-visitor">0</h4></div>
+                                </div>
+                            </div>
+                            <h4 class="font-bold text-lg mb-4">Statistik Baca Artikel & Kajian</h4>
+                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 max-h-64 overflow-y-auto" id="stat-articles">
+                                <!-- Injected via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Tab Kegiatan -->
+                        <div id="tab-kegiatan" class="tab-content hidden">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Manajemen Kegiatan</h3>
+                            <form id="form-kegiatan" onsubmit="window.handleFormSubmit(event, 'kegiatan')" class="space-y-4 max-w-3xl">
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Gambar Kegiatan *</label><input type="file" id="kegiatan-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Nama Kegiatan *</label><input type="text" id="kegiatan-nama" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Deskripsi Singkat *</label><textarea id="kegiatan-desc" required rows="2" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Isi Lengkap (Paragraf)</label><textarea id="kegiatan-isi" rows="6" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div><label class="block text-sm font-bold text-gray-700 mb-1">Tanggal *</label><input type="date" id="kegiatan-tgl" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                    <div><label class="block text-sm font-bold text-gray-700 mb-1">Waktu *</label><input type="time" id="kegiatan-waktu" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                </div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Tempat / Lokasi *</label><input type="text" id="kegiatan-lokasi" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Link Pendaftaran (Opsional)</label><input type="url" id="kegiatan-link" class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <button type="submit" class="bg-wana-green text-white font-bold py-3 px-8 rounded-sm hover:bg-green-600 transition-colors uppercase">Simpan Kegiatan</button>
+                            </form>
+                            <div class="mt-8 border-t border-gray-200 pt-4 max-w-3xl">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Kegiatan (Klik untuk Edit)</h4>
+                                <div id="admin-list-kegiatan" class="space-y-2 max-h-40 overflow-y-auto"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Artikel -->
+                        <div id="tab-artikel" class="tab-content hidden">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Manajemen Artikel</h3>
+                            <form id="form-artikel" onsubmit="window.handleFormSubmit(event, 'artikel')" class="space-y-4 max-w-3xl">
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Gambar Artikel *</label><input type="file" id="artikel-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Judul Artikel *</label><input type="text" id="artikel-judul" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Kategori *</label><input type="text" id="artikel-kategori" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Penulis *</label><input type="text" id="artikel-penulis" required class="w-full px-3 py-2 border border-gray-300 outline-none" placeholder="Contoh: Tim Redaksi Wana Aksara"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Deskripsi Pendek *</label><textarea id="artikel-desc" required rows="2" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Isi Artikel (Paragraf Panjang) *</label><textarea id="artikel-isi" required rows="10" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
+                                <button type="submit" class="bg-black text-white font-bold py-3 px-8 rounded-sm hover:bg-gray-800 transition-colors uppercase">Simpan Artikel</button>
+                            </form>
+                            <div class="mt-8 border-t border-gray-200 pt-4 max-w-3xl">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Artikel (Klik untuk Edit)</h4>
+                                <div id="admin-list-artikel" class="space-y-2 max-h-40 overflow-y-auto"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Kajian -->
+                        <div id="tab-kajian" class="tab-content hidden">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Manajemen Kajian</h3>
+                            <form id="form-kajian" onsubmit="window.handleFormSubmit(event, 'kajian')" class="space-y-4 max-w-3xl">
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Gambar Cover *</label><input type="file" id="kajian-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Kategori *</label><input type="text" id="kajian-kategori" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Judul Kajian *</label><input type="text" id="kajian-judul" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Penulis/Peneliti *</label><input type="text" id="kajian-penulis" required class="w-full px-3 py-2 border border-gray-300 outline-none" placeholder="Contoh: Divisi Riset Strategis"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Abstrak (Pendek) *</label><textarea id="kajian-desc" required rows="2" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Isi Lengkap Kajian *</label><textarea id="kajian-isi" required rows="10" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Link Dokumen Lengkap (Opsional)</label><input type="url" id="kajian-link" class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <button type="submit" class="bg-gray-800 text-white font-bold py-3 px-8 rounded-sm hover:bg-black transition-colors uppercase">Simpan Kajian</button>
+                            </form>
+                            <div class="mt-8 border-t border-gray-200 pt-4 max-w-3xl">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Kajian (Klik untuk Edit)</h4>
+                                <div id="admin-list-kajian" class="space-y-2 max-h-40 overflow-y-auto"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Galeri -->
+                        <div id="tab-galeri" class="tab-content hidden">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Manajemen Galeri</h3>
+                            <form id="form-galeri" onsubmit="window.handleFormSubmit(event, 'galeri')" class="space-y-4 max-w-3xl">
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Foto Ke Galeri *</label><input type="file" id="galeri-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Keterangan / Judul Foto *</label><input type="text" id="galeri-judul" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <button type="submit" class="bg-wana-green text-white font-bold py-3 px-8 rounded-sm hover:bg-green-600 transition-colors uppercase">Simpan Foto Galeri</button>
+                            </form>
+                            <div class="mt-8 border-t border-gray-200 pt-4 max-w-3xl">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Galeri (Klik untuk Edit/Hapus via DB)</h4>
+                                <div id="admin-list-galeri" class="space-y-2 max-h-40 overflow-y-auto"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Pesan Masuk -->
+                        <div id="tab-pesan" class="tab-content hidden">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Pesan Masuk (Hubungi Kami)</h3>
+                            <div id="admin-list-pesan" class="space-y-4">
+                                <!-- Pesan List Injected via JS -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-black text-white py-12 border-t-4 border-wana-green">
@@ -373,10 +473,7 @@
         </div>
     </div>
     
-    <!-- Toast Alert -->
-    <div id="toast" class="toast-notification"><span id="toast-message"></span></div>
-
-    <!-- Login Modal Admin -->
+    <!-- Login Modal -->
     <div id="login-modal" class="fixed inset-0 bg-black/80 z-[110] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
         <div class="bg-white w-full max-w-sm overflow-hidden flex flex-col shadow-2xl relative font-sans transform scale-95 transition-transform duration-300" id="login-modal-content">
             <div class="bg-black text-white p-5 text-center border-b-4 border-wana-green relative">
@@ -399,111 +496,27 @@
         </div>
     </div>
 
-    <div id="admin-modal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl relative font-sans rounded-sm">
-            
-            <div class="bg-black text-white p-5 flex justify-between items-center border-b-4 border-wana-green shrink-0">
-                <h3 class="font-heading text-xl uppercase tracking-wide">Panel Manajemen Konten</h3>
-                <button onclick="window.toggleAdminPanel()" class="text-gray-400 hover:text-white"><i class="fas fa-times text-2xl"></i></button>
-            </div>
-
-            <div class="flex border-b border-gray-200 bg-gray-100 shrink-0">
-                <button onclick="window.switchTab('tab-kegiatan')" id="btn-tab-kegiatan" class="flex-1 py-3 font-bold text-black border-b-2 border-black bg-white text-sm">Kegiatan</button>
-                <button onclick="window.switchTab('tab-artikel')" id="btn-tab-artikel" class="flex-1 py-3 font-bold text-gray-500 hover:text-black text-sm">Artikel</button>
-                <button onclick="window.switchTab('tab-kajian')" id="btn-tab-kajian" class="flex-1 py-3 font-bold text-gray-500 hover:text-black text-sm">Kajian</button>
-                <button onclick="window.switchTab('tab-galeri')" id="btn-tab-galeri" class="flex-1 py-3 font-bold text-gray-500 hover:text-black text-sm">Galeri</button>
-            </div>
-
-            <div class="p-6 overflow-y-auto flex-1 bg-white">
-                <!-- Tab Kegiatan -->
-                <div id="tab-kegiatan" class="tab-content block">
-                    <form id="form-kegiatan" onsubmit="window.handleFormSubmit(event, 'kegiatan')" class="space-y-4">
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Gambar Kegiatan *</label><input type="file" id="kegiatan-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Nama Kegiatan *</label><input type="text" id="kegiatan-nama" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Deskripsi Singkat *</label><textarea id="kegiatan-desc" required rows="2" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Isi Lengkap (Paragraf)</label><textarea id="kegiatan-isi" rows="6" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div><label class="block text-sm font-bold text-gray-700 mb-1">Tanggal *</label><input type="date" id="kegiatan-tgl" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                            <div><label class="block text-sm font-bold text-gray-700 mb-1">Waktu *</label><input type="time" id="kegiatan-waktu" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        </div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Tempat / Lokasi *</label><input type="text" id="kegiatan-lokasi" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Link Pendaftaran (Opsional)</label><input type="url" id="kegiatan-link" class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        <button type="submit" class="w-full bg-wana-green text-white font-heading text-lg py-3 hover:bg-green-600 transition-colors uppercase">Simpan Kegiatan</button>
-                    </form>
-                    <div class="mt-8 border-t border-gray-200 pt-4">
-                        <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Kegiatan (Klik untuk Edit)</h4>
-                        <div id="admin-list-kegiatan" class="space-y-2 max-h-40 overflow-y-auto"></div>
-                    </div>
-                </div>
-
-                <!-- Tab Artikel -->
-                <div id="tab-artikel" class="tab-content hidden">
-                    <form id="form-artikel" onsubmit="window.handleFormSubmit(event, 'artikel')" class="space-y-4">
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Gambar Artikel *</label><input type="file" id="artikel-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Judul Artikel *</label><input type="text" id="artikel-judul" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Kategori *</label><input type="text" id="artikel-kategori" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Penulis *</label><input type="text" id="artikel-penulis" required class="w-full px-3 py-2 border border-gray-300 outline-none" placeholder="Contoh: Tim Redaksi Wana Aksara"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Deskripsi Pendek *</label><textarea id="artikel-desc" required rows="2" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Isi Artikel (Paragraf Panjang) *</label><textarea id="artikel-isi" required rows="8" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                        <button type="submit" class="w-full bg-black text-white font-heading text-lg py-3 hover:bg-gray-800 transition-colors uppercase">Simpan Artikel</button>
-                    </form>
-                    <div class="mt-8 border-t border-gray-200 pt-4">
-                        <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Artikel (Klik untuk Edit)</h4>
-                        <div id="admin-list-artikel" class="space-y-2 max-h-40 overflow-y-auto"></div>
-                    </div>
-                </div>
-
-                <!-- Tab Kajian -->
-                <div id="tab-kajian" class="tab-content hidden">
-                    <form id="form-kajian" onsubmit="window.handleFormSubmit(event, 'kajian')" class="space-y-4">
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Gambar Cover *</label><input type="file" id="kajian-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Kategori *</label><input type="text" id="kajian-kategori" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Judul Kajian *</label><input type="text" id="kajian-judul" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Penulis/Peneliti *</label><input type="text" id="kajian-penulis" required class="w-full px-3 py-2 border border-gray-300 outline-none" placeholder="Contoh: Divisi Riset Strategis"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Abstrak (Pendek) *</label><textarea id="kajian-desc" required rows="2" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Isi Lengkap Kajian *</label><textarea id="kajian-isi" required rows="8" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Link Dokumen Lengkap (Opsional)</label><input type="url" id="kajian-link" class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        <button type="submit" class="w-full bg-gray-800 text-white font-heading text-lg py-3 hover:bg-black transition-colors uppercase">Simpan Kajian</button>
-                    </form>
-                    <div class="mt-8 border-t border-gray-200 pt-4">
-                        <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Kajian (Klik untuk Edit)</h4>
-                        <div id="admin-list-kajian" class="space-y-2 max-h-40 overflow-y-auto"></div>
-                    </div>
-                </div>
-
-                <!-- Tab Galeri -->
-                <div id="tab-galeri" class="tab-content hidden">
-                    <form id="form-galeri" onsubmit="window.handleFormSubmit(event, 'galeri')" class="space-y-4">
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Foto Ke Galeri *</label><input type="file" id="galeri-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
-                        <div><label class="block text-sm font-bold text-gray-700 mb-1">Keterangan / Judul Foto *</label><input type="text" id="galeri-judul" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                        <button type="submit" class="w-full bg-wana-green text-white font-heading text-lg py-3 hover:bg-green-600 transition-colors uppercase">Simpan Foto Galeri</button>
-                    </form>
-                    <div class="mt-8 border-t border-gray-200 pt-4">
-                        <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Galeri (Klik untuk Edit)</h4>
-                        <div id="admin-list-galeri" class="space-y-2 max-h-40 overflow-y-auto"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Toast Alert -->
+    <div id="toast" class="toast-notification"><span id="toast-message"></span></div>
 
     <script>
+        // --- 0. KONFIGURASI SUPABASE ---
         var SUPABASE_URL = 'https://nghhgsdesffhqkwtmuzb.supabase.co';
         var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5naGhnc2Rlc2ZmaHFrd3RtdXpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0NTk0OTAsImV4cCI6MjA5ODAzNTQ5MH0.oG2P2PujX1q_qt1FIDP8lr-Dt0Y638mvGrM8izM0_vk';
-        var db = { kegiatan: [], artikel: [], kajian: [], galeri: [] };
+        
+        var db = { kegiatan: [], artikel: [], kajian: [], galeri: [], pesan: [], statVisitor: 0 };
+        var isAdminLoggedIn = false;
 
         var teamMembers = [
             { role: "General Coordinator", name: "Hisyam Tsany Ananto", univ: "Institut Pertanian Bogor", img: "https://iili.io/nVIN0Cb.jpg", linkedin: "https://www.linkedin.com/in/hisyam-tsany-ananto-85b443272/" },
-            { role: "Administrative & Digital Operations Officer", name: "Muhamad Fikri", univ: "Institut Pertanian Bogor", img: "https://iili.io/nVIVChv.jpg", linkedin: "https://www.linkedin.com/in/mhmdfkri/" },
-            { role: "Financial Operations Officer", name: "Angeli Aprilia Anastef", univ: "Institut Pertanian Bogor", img: "https://iili.io/nw1OHXt.png", linkedin: "https://www.linkedin.com/in/angeli-aprilia-anastef-a720251b4/" },
-            { role: "Strategic Program Officer", name: "Luthfi Ilham Hidayat", univ: "Institut Pertanian Bogor", img: "https://iili.io/nw1Xk9S.jpg", linkedin: "https://www.linkedin.com/in/luthfiilhamhidayat/" },
-            { role: "Strategic Research Officer", name: "Sulthan Fadhil Hisyam", univ: "Universitas Tarumanegara", img: "", linkedin: "" },
-            { role: "Sustainable Agriculture Hub", name: "Muhammad Amirul Faris", univ: "Institut Pertanian Bogor", img: "https://iili.io/nw1GyYP.jpg", linkedin: "https://www.linkedin.com/in/amirul-faris/" },
-            { role: "Forestry & Conservation Hub", name: "Fadhil Zahiridho Anwar", univ: "Institut Pertanian Bogor", img: "", linkedin: "" },
-            { role: "Forestry & Conservation Hub", name: "Muhammad Bintang Perkasa Sopuan", univ: "Institut Pertanian Bogor", img: "https://iili.io/nw1waFj.jpg", linkedin: "https://www.linkedin.com/in/m-bintang-perkasa-sopuan-9b77432a9/" },
+            { role: "Administrative & Digital Operations", name: "Muhamad Fikri", univ: "Institut Pertanian Bogor", img: "https://iili.io/nVIVChv.jpg", linkedin: "https://www.linkedin.com/in/mhmdfkri/" },
+            { role: "Financial Operations Officer", name: "Angeli Aprilia Anastef", univ: "Institut Pertanian Bogor", img: "", linkedin: "" },
+            { role: "Strategic Program Officer", name: "Luthfi Ilham Hidayat", univ: "Institut Pertanian Bogor", img: "", linkedin: "" },
+            { role: "Strategic Research Officer", name: "Sulthan Fadhil Hisyam", univ: "Institut Pertanian Bogor", img: "", linkedin: "" },
             { role: "Forestry & Conservation Hub", name: "Fadhil Zahiridho Anwar", univ: "Institut Pertanian Bogor", img: "", linkedin: "" },
             { role: "Ecology & Climate Hub", name: "Fadilah Lesmana", univ: "Institut Pertanian Bogor", img: "", linkedin: "" },
-            { role: "Environmental Law & Policy Hub", name: "Aryton Sena", univ: "Universitas Tarumanegara", img: "", linkedin: "" }
+            { role: "Environmental Law & Policy Hub", name: "Aryton Sena", univ: "Institut Pertanian Bogor", img: "", linkedin: "" },
+            { role: "Sustainable Agriculture Hub", name: "Muhammad Amirul Faris", univ: "Institut Pertanian Bogor", img: "", linkedin: "" }
         ];
 
         window.showToast = function(msg, isError = false) {
@@ -513,26 +526,38 @@
             t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3500);
         };
 
-        // Fungsi URL Routing: Membaca URL Hash agar setiap artikel memiliki Link Unik
+        // --- SISTEM ROUTING & VIEWS ---
         window.handleRouting = function() {
             var hash = window.location.hash.substring(1) || 'home';
             document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active-nav'));
+            var nav = document.getElementById('main-nav');
+
+            if (hash === 'admin' && !isAdminLoggedIn) {
+                window.location.hash = '#home'; return;
+            }
 
             if (hash.startsWith('baca/')) {
-                // Link spesifik, contoh: #baca/artikel/12345
                 var parts = hash.split('/');
-                var type = parts[1]; // artikel / kajian
-                var id = parts[2];
+                var type = parts[1]; var id = parts[2];
                 document.getElementById('baca-halaman').classList.add('active');
                 window.populateReadPage(type, id);
             } else {
-                // Link menu biasa (home, tentang, kegiatan, dll)
                 var target = document.getElementById(hash);
                 if(target) {
                     target.classList.add('active');
                     var activeLink = document.querySelector(`.nav-link[href="#${hash}"]`);
                     if(activeLink) activeLink.classList.add('active-nav');
+                    
+                    // Sembunyikan Navigasi Atas jika di Admin
+                    if(hash === 'admin') nav.classList.add('hidden');
+                    else nav.classList.remove('hidden');
+
+                    // Hitung visitor setiap kali kembali ke home
+                    if(hash === 'home' && window.supabase) {
+                        window.supabase.rpc('increment_website_visits').then(()=>{});
+                    }
+
                 } else {
                     document.getElementById('home').classList.add('active');
                 }
@@ -541,16 +566,28 @@
             document.getElementById('mobile-menu').classList.add('hidden');
         };
 
-        // Pasang pendeteksi perubahan link
         window.addEventListener('hashchange', window.handleRouting);
 
-        // Fitur Salin Link
+        // --- SISTEM SHARE SOCMED ---
+        window.shareWA = function() {
+            window.open('https://wa.me/?text=' + encodeURIComponent('Baca info menarik ini: ' + window.location.href), '_blank');
+        };
+        window.shareFB = function() {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+        };
         window.copyLink = function() {
-            navigator.clipboard.writeText(window.location.href);
-            window.showToast("Tautan berhasil disalin ke clipboard!");
+            var tempInput = document.createElement("input");
+            tempInput.value = window.location.href;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            window.showToast("Link berhasil disalin!");
         };
 
+        // --- SISTEM LOGIN & ADMIN DASHBOARD ---
         window.showLoginModal = function() {
+            if(isAdminLoggedIn) { window.location.hash = '#admin'; return; }
             var m = document.getElementById('login-modal'), c = document.getElementById('login-modal-content');
             m.classList.remove('hidden'); void m.offsetWidth; m.classList.remove('opacity-0'); c.classList.remove('scale-95');
         };
@@ -563,21 +600,28 @@
             if(document.getElementById('login-username').value === 'wanawani' && document.getElementById('login-password').value === 'wanipiro') {
                 window.closeLoginModal(); window.showToast('Login berhasil!');
                 document.getElementById('login-username').value = ''; document.getElementById('login-password').value = '';
-                setTimeout(window.toggleAdminPanel, 500);
-            } else { window.showToast('Akses ditolak!', true); }
+                isAdminLoggedIn = true;
+                window.location.hash = '#admin';
+            } else { window.showToast('Username/Password Salah!', true); }
+        };
+        window.logoutAdmin = function() {
+            isAdminLoggedIn = false;
+            window.showToast('Berhasil logout.');
+            window.location.hash = '#home';
         };
 
-        window.toggleAdminPanel = function() { document.getElementById('admin-modal').classList.toggle('hidden'); };
         window.switchTab = function(tid) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(tid).classList.remove('hidden');
-            ['kegiatan','artikel','kajian','galeri'].forEach(t => {
+            ['dashboard','kegiatan','artikel','kajian','galeri','pesan'].forEach(t => {
                 var b = document.getElementById(`btn-tab-${t}`);
-                if(b) b.className = 'flex-1 py-3 font-bold text-gray-500 hover:text-black bg-gray-100 border-b border-gray-200 text-sm';
+                if(b) b.className = 'w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm';
             });
-            document.getElementById(`btn-tab-${tid.replace('tab-','')}`).className = 'flex-1 py-3 font-bold text-black border-b-2 border-black bg-white text-sm';
+            var actBtn = document.getElementById(`btn-tab-${tid.replace('tab-','')}`);
+            if(actBtn) actBtn.className = 'w-full text-left px-6 py-3 font-bold text-white border-l-4 border-wana-green bg-gray-900 hover:bg-gray-800 text-sm';
         };
 
+        // --- RENDER UMUM ---
         window.renderTeam = function() {
             var c = document.getElementById('team-container'), h = '';
             teamMembers.forEach(m => {
@@ -599,11 +643,47 @@
             var c = document.getElementById('admin-list-' + type);
             if(!c || !db[type]) return;
             var h = '';
-            db[type].forEach(i => {
+            db[type].slice().reverse().forEach(i => {
                 var title = i.judul || i.nama;
                 h += `<div class="flex justify-between items-center p-3 bg-gray-50 border border-gray-200 text-sm hover:bg-gray-100 mb-2">
                         <span class="truncate font-bold pr-4 flex-1 text-gray-700">${title}</span>
                         <button type="button" onclick="window.loadEdit('${type}', '${i.id}')" class="text-wana-green font-bold hover:underline whitespace-nowrap bg-white px-3 py-1 border border-gray-200 shadow-sm"><i class="fas fa-edit"></i> Edit</button>
+                      </div>`;
+            });
+            c.innerHTML = h;
+        };
+
+        window.renderAdminStats = function() {
+            document.getElementById('stat-visitor').innerText = db.statVisitor || 0;
+            var ast = document.getElementById('stat-articles');
+            var list = [];
+            db.artikel.forEach(a => list.push({t: a.judul, v: a.views||0, cat:'Artikel'}));
+            db.kajian.forEach(k => list.push({t: k.judul, v: k.views||0, cat:'Kajian'}));
+            list.sort((a,b) => b.v - a.v); // Terpopuler
+            
+            var h = '';
+            list.forEach(l => {
+                h += `<div class="flex justify-between border-b border-gray-200 py-2 text-sm">
+                        <span class="text-gray-700 w-3/4 truncate">${l.t} <span class="text-xs text-gray-400 bg-gray-100 px-1 ml-1 rounded">${l.cat}</span></span>
+                        <span class="font-bold text-wana-green">${l.v} Views</span>
+                      </div>`;
+            });
+            if(list.length === 0) h = '<p class="text-sm text-gray-400">Belum ada data artikel/kajian.</p>';
+            ast.innerHTML = h;
+        };
+
+        window.renderAdminPesan = function() {
+            var c = document.getElementById('admin-list-pesan');
+            if(db.pesan.length === 0) { c.innerHTML = '<p class="text-gray-500 text-sm">Belum ada pesan masuk.</p>'; return; }
+            var h = '';
+            db.pesan.slice().reverse().forEach(p => {
+                var dt = new Date(p.created_at).toLocaleDateString('id-ID', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+                h += `<div class="bg-white border border-gray-200 p-4 rounded-sm shadow-sm">
+                        <div class="flex justify-between items-start border-b border-gray-100 pb-2 mb-2">
+                            <div><h4 class="font-bold text-black">${p.nama}</h4><a href="mailto:${p.email}" class="text-sm text-blue-600 hover:underline">${p.email}</a></div>
+                            <span class="text-xs text-gray-400">${dt}</span>
+                        </div>
+                        <p class="text-gray-700 text-sm whitespace-pre-wrap">${p.pesan}</p>
                       </div>`;
             });
             c.innerHTML = h;
@@ -614,14 +694,16 @@
             if(!i) return;
             
             if(type === 'kegiatan') {
-                document.getElementById(type + '-nama').value = i.nama;
-                document.getElementById(type + '-tgl').value = i.tgl;
-                document.getElementById(type + '-waktu').value = i.waktu;
-                document.getElementById(type + '-lokasi').value = i.lokasi;
+                document.getElementById('kegiatan-nama').value = i.nama;
+                document.getElementById('kegiatan-tgl').value = i.tgl;
+                document.getElementById('kegiatan-waktu').value = i.waktu;
+                document.getElementById('kegiatan-lokasi').value = i.lokasi;
+            } else if (type === 'galeri') {
+                document.getElementById('galeri-judul').value = i.judul;
             } else {
                 document.getElementById(type + '-judul').value = i.judul;
-                if(document.getElementById(type + '-kategori')) document.getElementById(type + '-kategori').value = i.kategori;
-                if(document.getElementById(type + '-penulis')) document.getElementById(type + '-penulis').value = i.penulis || '';
+                document.getElementById(type + '-kategori').value = i.kategori;
+                document.getElementById(type + '-penulis').value = i.penulis || '';
             }
             
             if(document.getElementById(type + '-desc')) document.getElementById(type + '-desc').value = i.desc || '';
@@ -630,7 +712,7 @@
             
             var imgInput = document.getElementById(type + '-img');
             imgInput.required = false; 
-            imgInput.previousElementSibling.innerText = 'Upload Gambar Baru (Opsional)';
+            imgInput.previousElementSibling.innerText = 'Upload Gambar Baru (Abaikan jika tak diubah)';
             
             var form = document.getElementById('form-' + type);
             form.setAttribute('data-edit-id', id);
@@ -638,6 +720,7 @@
             window.showToast('Mode Edit Aktif: ' + (i.judul || i.nama));
         };
 
+        // --- RENDER KONTEN (HOME, KEGIATAN, ARTIKEL, KAJIAN) ---
         window.renderKegiatan = function() {
             var c = document.getElementById('kegiatan-container'), e = document.getElementById('empty-kegiatan');
             if(!db.kegiatan || db.kegiatan.length === 0) { e.classList.remove('hidden'); c.innerHTML=''; return; }
@@ -674,7 +757,7 @@
                 hList += `<a href="#baca/artikel/${i.id}" class="flex flex-col md:flex-row gap-6 lg:gap-8 group cursor-pointer border-b border-gray-200 pb-8 font-sans block">
                             <div class="w-full md:w-4/12 overflow-hidden"><img src="${i.imgUrl}" class="w-full h-48 md:h-full object-cover group-hover:scale-105 transition-transform duration-500"></div>
                             <div class="w-full md:w-8/12 flex flex-col justify-center">
-                                <div class="text-wana-green font-bold text-sm mb-2">${i.kategori} &bull; ${i.penulis || 'Wana Aksara'}</div>
+                                <div class="text-wana-green font-bold text-sm mb-2">${i.kategori} &bull; ${i.penulis || 'Wana Aksara'} &bull; <i class="far fa-eye"></i> ${i.views||0}</div>
                                 <h3 class="font-heading text-2xl lg:text-3xl text-black mb-3 group-hover:text-wana-green transition-colors">${i.judul}</h3>
                                 <p class="text-gray-700 leading-relaxed mb-3 line-clamp-3">${i.desc}</p>
                                 <div class="text-gray-500 text-sm mt-auto flex justify-between"><span>${tglFmt}</span><span class="text-wana-green font-bold uppercase">Baca Artikel</span></div>
@@ -697,7 +780,10 @@
             e.classList.add('hidden'); var h = '';
             db.kajian.slice().reverse().forEach(i => {
                 h += `<a href="#baca/kajian/${i.id}" class="group cursor-pointer bg-gray-800 hover:bg-gray-700 transition-colors flex flex-col block">
-                        <div class="overflow-hidden"><img src="${i.imgUrl}" class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"></div>
+                        <div class="overflow-hidden relative">
+                            <img src="${i.imgUrl}" class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                            <div class="absolute top-2 right-2 bg-black/60 text-white text-xs px-2 py-1"><i class="far fa-eye"></i> ${i.views||0}</div>
+                        </div>
                         <div class="p-5 flex-1 flex flex-col">
                             <span class="text-wana-green font-bold text-sm mb-2">${i.kategori}</span>
                             <h3 class="font-heading text-xl text-white mb-3 group-hover:text-wana-yellow">${i.judul}</h3>
@@ -725,9 +811,16 @@
             c.innerHTML = h; window.renderAdminList('galeri');
         };
 
+        // --- READ PAGE (ARTIKEL & KAJIAN) ---
         window.populateReadPage = function(type, id) {
             var i = db[type] ? db[type].find(x => String(x.id) === String(id)) : null;
-            if(!i) return; // Jika data belum ter-load atau ID salah
+            if(!i) return;
+            
+            // Increment views (Server-side update for next time)
+            if(window.supabase) {
+                if(type === 'artikel') window.supabase.rpc('increment_article_views', {article_id: id}).then(()=>{});
+                if(type === 'kajian') window.supabase.rpc('increment_kajian_views', {kajian_id: id}).then(()=>{});
+            }
             
             var dObj = i.created_at ? new Date(i.created_at) : new Date();
             var tglFmt = dObj.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
@@ -735,9 +828,10 @@
             
             document.getElementById('baca-kategori').innerText = i.kategori;
             document.getElementById('baca-judul').innerText = i.judul;
-            document.getElementById('baca-penulis').innerText = i.penulis || 'Tim Wana Aksara';
+            document.getElementById('baca-penulis').innerText = i.penulis || 'Wana Aksara';
             document.getElementById('baca-tanggal').innerText = tglFmt;
             document.getElementById('baca-waktu').innerText = wktFmt;
+            document.getElementById('baca-views').innerText = (i.views || 0) + 1; // +1 for current load
             document.getElementById('baca-img').src = i.imgUrl;
             document.getElementById('baca-isi').innerText = i.isi || i.desc;
             
@@ -745,14 +839,12 @@
             if(type === 'kajian' && i.link) {
                 act.innerHTML = `<a href="${i.link}" target="_blank" class="inline-block bg-black text-white font-bold font-heading px-8 py-3 hover:bg-[#66cc00] text-lg uppercase transition-colors"><i class="fas fa-download mr-2"></i> Unduh Dokumen Lengkap</a>`;
                 act.classList.remove('hidden');
-            } else {
-                act.innerHTML = ''; act.classList.add('hidden');
-            }
+            } else { act.innerHTML = ''; act.classList.add('hidden'); }
             
-            // Set tombol kembali berdasarkan jenis bacaan
             document.getElementById('baca-kembali').href = `#${type}`;
         };
 
+        // --- MODAL KHUSUS KEGIATAN & GALERI ---
         window.showDetailModal = function(type, id) {
             var i = db[type].find(x => String(x.id) === String(id));
             if(!i) return;
@@ -789,17 +881,14 @@
             m.classList.add('opacity-0'); c.classList.add('scale-95'); setTimeout(() => m.classList.add('hidden'), 300);
         };
 
+        // --- UPLOAD & FORMS ---
         window.uploadFile = async function(file) {
             try {
                 var e = file.name.split('.').pop(), n = Date.now()+'.'+e;
                 var { error: err } = await window.supabase.storage.from('wana-images').upload(n, file);
                 if(err) throw err;
                 return window.supabase.storage.from('wana-images').getPublicUrl(n).data.publicUrl;
-            } catch(e) {
-                console.error(e);
-                window.showToast("Gagal upload gambar! Pastikan folder Storage 'wana-images' sudah ada.", true);
-                throw e;
-            }
+            } catch(e) { throw new Error("Gagal upload gambar! Pastikan folder Storage 'wana-images' sudah dibuat di Supabase."); }
         };
 
         window.handleFormSubmit = async function(e, type) {
@@ -822,10 +911,11 @@
                     var { error } = await window.supabase.from(type).update(d).eq('id', editId);
                     if(error) throw error; window.showToast('Data berhasil diperbarui!');
                 } else {
-                    var { data: ins, error } = await window.supabase.from(type).insert([d]).select();
+                    var { error } = await window.supabase.from(type).insert([d]);
                     if(error) throw error; window.showToast('Data baru sukses dipublikasikan!');
                 }
                 
+                // Refresh Data Loka
                 var { data: freshData } = await window.supabase.from(type).select('*').order('created_at', { ascending: true });
                 if(freshData) db[type] = freshData;
 
@@ -837,11 +927,10 @@
                 if(type==='artikel') window.renderArtikel();
                 if(type==='kajian') window.renderKajian();
                 if(type==='galeri') window.renderGaleri();
+                window.renderAdminStats();
                 
-                // Refresh pembacaan jika URL spesifik sedang aktif setelah mengedit
-                window.handleRouting(); 
-                window.toggleAdminPanel();
-            } catch(err) { window.showToast("Gagal menyimpan: " + err.message, true); } 
+                // Admin page tetap stay, tidak keluar
+            } catch(err) { window.showToast("Error: " + err.message, true); } 
             finally { btn.innerText = ori; btn.disabled = false; }
         };
 
@@ -852,35 +941,43 @@
             try {
                 var d = { nama: document.getElementById('pesan-nama').value, email: document.getElementById('pesan-email').value, pesan: document.getElementById('pesan-isi').value };
                 var { error } = await window.supabase.from('pesan').insert([d]);
-                if(error) throw error; window.showToast('Terima kasih! Pesan Anda berhasil dikirim.');
+                if(error) throw error; 
+                window.showToast('Terima kasih! Pesan Anda berhasil dikirim ke Admin.');
                 e.target.reset();
+                
+                // Update Admin view silently
+                var { data: freshPesan } = await window.supabase.from('pesan').select('*').order('created_at', { ascending: true });
+                if(freshPesan) { db.pesan = freshPesan; window.renderAdminPesan(); }
             } catch(err) { window.showToast('Gagal mengirim pesan: ' + err.message, true); } 
             finally { btn.innerText = ori; btn.disabled = false; }
         };
 
+        // --- INISIALISASI UTAMA ---
         window.onload = async function() {
             window.renderTeam();
             try {
                 window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                var [resKeg, resArt, resKaj, resGal] = await Promise.all([
+                var [resKeg, resArt, resKaj, resGal, resPesan, resStat] = await Promise.all([
                     window.supabase.from('kegiatan').select('*').order('created_at', { ascending: true }),
                     window.supabase.from('artikel').select('*').order('created_at', { ascending: true }),
                     window.supabase.from('kajian').select('*').order('created_at', { ascending: true }),
-                    window.supabase.from('galeri').select('*').order('created_at', { ascending: true })
+                    window.supabase.from('galeri').select('*').order('created_at', { ascending: true }),
+                    window.supabase.from('pesan').select('*').order('created_at', { ascending: true }),
+                    window.supabase.from('statistik').select('*').eq('id','website').single()
                 ]);
+                
                 if(!resKeg.error && resKeg.data) db.kegiatan = resKeg.data;
                 if(!resArt.error && resArt.data) db.artikel = resArt.data;
                 if(!resKaj.error && resKaj.data) db.kajian = resKaj.data;
                 if(!resGal.error && resGal.data) db.galeri = resGal.data;
+                if(!resPesan.error && resPesan.data) db.pesan = resPesan.data;
+                if(!resStat.error && resStat.data) db.statVisitor = resStat.data.views;
 
                 window.renderKegiatan(); window.renderArtikel(); window.renderKajian(); window.renderGaleri();
-                
-                // Panggil handleRouting agar website tahu harus menampilkan page mana di awal load
+                window.renderAdminStats(); window.renderAdminPesan();
                 window.handleRouting(); 
-
             } catch (err) {
-                console.error("Supabase Init Error:", err);
-                window.renderKegiatan(); window.renderArtikel(); window.renderKajian(); window.renderGaleri();
+                console.error("Supabase tidak merespon/URL salah:", err);
                 window.handleRouting();
             }
         };
