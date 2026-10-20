@@ -9,6 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
+    <!-- Library untuk Editor Teks (Tebal, Miring, Paragraf) -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -19,7 +23,7 @@
                     },
                     colors: {
                         wana: {
-                            green: '#66cc00', // Hijau Cerah
+                            green: '#66cc00', 
                             dark: '#1a1a1a',
                             yellow: '#ffde00',
                             gray: '#f3f4f6'
@@ -62,6 +66,11 @@
             z-index: 9999; font-weight: 500;
         }
         .toast-notification.show { bottom: 20px; }
+
+        /* Penyesuaian editor supaya rapi dan ukuran font responsif */
+        .ql-editor { font-family: 'Inter', sans-serif; font-size: inherit; }
+        .ql-toolbar.ql-snow { border-color: #d1d5db; border-radius: 4px 4px 0 0; background: #f9fafb; }
+        .ql-container.ql-snow { border-color: #d1d5db; border-radius: 0 0 4px 4px; background: #fff; }
     </style>
 </head>
 <body class="bg-white text-gray-800 antialiased pt-20">
@@ -255,8 +264,13 @@
                     <span class="flex items-center gap-2"><i class="far fa-eye text-wana-green"></i> <span id="baca-views"></span>x Dilihat</span>
                 </div>
                 
-                <img id="baca-img" src="" class="w-full max-h-[60vh] object-cover mb-10 bg-gray-100">
-                <div id="baca-isi" class="text-lg text-gray-800 leading-relaxed whitespace-pre-wrap"></div>
+                <div class="mb-10">
+                    <img id="baca-img" src="" class="w-full max-h-[60vh] object-cover bg-gray-100">
+                    <p id="baca-sumber-img" class="text-xs text-gray-400 mt-2 italic text-center hidden"></p>
+                </div>
+                
+                <!-- Font size: text-base (kecil untuk HP), md:text-lg (besar untuk Laptop) -->
+                <div id="baca-isi" class="text-base md:text-lg text-gray-800 leading-relaxed ql-editor px-0"></div>
                 <div id="baca-action" class="mt-10 hidden"></div>
                 
                 <!-- Share Buttons -->
@@ -307,7 +321,7 @@
             </div>
         </section>
 
-        <!-- === PAGE: ADMIN DASHBOARD (Penuh, Bukan Modal) === -->
+        <!-- === PAGE: ADMIN DASHBOARD === -->
         <section id="admin" class="page-section bg-gray-100 min-h-screen pt-4 pb-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-white shadow-xl rounded-lg overflow-hidden flex flex-col md:flex-row min-h-[80vh] font-sans">
@@ -320,10 +334,11 @@
                         </div>
                         <div class="flex-1 overflow-y-auto py-4">
                             <button onclick="window.switchTab('tab-dashboard')" id="btn-tab-dashboard" class="w-full text-left px-6 py-3 font-bold text-white border-l-4 border-wana-green bg-gray-900 hover:bg-gray-800 text-sm"><i class="fas fa-chart-pie w-6"></i> Dashboard</button>
-                            <button onclick="window.switchTab('tab-kegiatan')" id="btn-tab-kegiatan" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="far fa-calendar-alt w-6"></i> Kegiatan</button>
-                            <button onclick="window.switchTab('tab-artikel')" id="btn-tab-artikel" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="far fa-newspaper w-6"></i> Artikel</button>
-                            <button onclick="window.switchTab('tab-kajian')" id="btn-tab-kajian" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="fas fa-book w-6"></i> Kajian</button>
-                            <button onclick="window.switchTab('tab-galeri')" id="btn-tab-galeri" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="fas fa-images w-6"></i> Galeri</button>
+                            <button onclick="window.switchTab('tab-kelola')" id="btn-tab-kelola" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="fas fa-tasks w-6"></i> Kelola & Edit Data</button>
+                            <button onclick="window.switchTab('tab-kegiatan')" id="btn-tab-kegiatan" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="far fa-calendar-alt w-6"></i> + Kegiatan</button>
+                            <button onclick="window.switchTab('tab-artikel')" id="btn-tab-artikel" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="far fa-newspaper w-6"></i> + Artikel</button>
+                            <button onclick="window.switchTab('tab-kajian')" id="btn-tab-kajian" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="fas fa-book w-6"></i> + Kajian</button>
+                            <button onclick="window.switchTab('tab-galeri')" id="btn-tab-galeri" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="fas fa-images w-6"></i> + Galeri</button>
                             <button onclick="window.switchTab('tab-pesan')" id="btn-tab-pesan" class="w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm"><i class="fas fa-envelope w-6"></i> Pesan Masuk</button>
                         </div>
                         <div class="p-4 border-t border-gray-800">
@@ -334,7 +349,7 @@
                     <!-- Main Content Area -->
                     <div class="flex-1 p-6 md:p-8 bg-white h-[80vh] overflow-y-auto">
                         
-                        <!-- Tab: Dashboard / Statistik -->
+                        <!-- Tab Dashboard / Statistik -->
                         <div id="tab-dashboard" class="tab-content block">
                             <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Statistik Website</h3>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -344,90 +359,117 @@
                                 </div>
                             </div>
                             <h4 class="font-bold text-lg mb-4">Statistik Baca Artikel & Kajian</h4>
-                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 max-h-64 overflow-y-auto" id="stat-articles">
-                                <!-- Injected via JS -->
+                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 max-h-64 overflow-y-auto" id="stat-articles"></div>
+                        </div>
+
+                        <!-- Tab Kelola & Edit Data -->
+                        <div id="tab-kelola" class="tab-content hidden">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Kelola & Edit Data</h3>
+                            <div class="space-y-8">
+                                <div>
+                                    <h4 class="font-bold text-black border-l-4 border-wana-green pl-2 mb-3">Daftar Artikel</h4>
+                                    <div id="admin-list-artikel" class="space-y-2 max-h-40 overflow-y-auto bg-gray-50 p-2 border border-gray-200 rounded"></div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-black border-l-4 border-wana-green pl-2 mb-3">Daftar Kegiatan</h4>
+                                    <div id="admin-list-kegiatan" class="space-y-2 max-h-40 overflow-y-auto bg-gray-50 p-2 border border-gray-200 rounded"></div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-black border-l-4 border-wana-green pl-2 mb-3">Daftar Kajian</h4>
+                                    <div id="admin-list-kajian" class="space-y-2 max-h-40 overflow-y-auto bg-gray-50 p-2 border border-gray-200 rounded"></div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-black border-l-4 border-wana-green pl-2 mb-3">Daftar Galeri</h4>
+                                    <div id="admin-list-galeri" class="space-y-2 max-h-40 overflow-y-auto bg-gray-50 p-2 border border-gray-200 rounded"></div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Tab Kegiatan -->
                         <div id="tab-kegiatan" class="tab-content hidden">
-                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Manajemen Kegiatan</h3>
-                            <form id="form-kegiatan" onsubmit="window.handleFormSubmit(event, 'kegiatan')" class="space-y-4 max-w-3xl">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Formulir Kegiatan</h3>
+                            <form id="form-kegiatan" onsubmit="window.prepSubmit(event, 'kegiatan')" class="space-y-4 max-w-3xl">
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Gambar Kegiatan *</label><input type="file" id="kegiatan-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Sumber Gambar (Opsional)</label><input type="text" id="kegiatan-sumber" class="w-full px-3 py-2 border border-gray-300 outline-none" placeholder="Contoh: Freepik / Dokumen Pribadi"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Nama Kegiatan *</label><input type="text" id="kegiatan-nama" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Deskripsi Singkat *</label><textarea id="kegiatan-desc" required rows="2" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Isi Lengkap (Paragraf)</label><textarea id="kegiatan-isi" rows="6" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                                <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1">Isi Lengkap (Paragraf)</label>
+                                    <div id="editor-kegiatan" style="height: 250px;"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 mt-2">
                                     <div><label class="block text-sm font-bold text-gray-700 mb-1">Tanggal *</label><input type="date" id="kegiatan-tgl" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
                                     <div><label class="block text-sm font-bold text-gray-700 mb-1">Waktu *</label><input type="time" id="kegiatan-waktu" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
                                 </div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Tempat / Lokasi *</label><input type="text" id="kegiatan-lokasi" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Link Pendaftaran (Opsional)</label><input type="url" id="kegiatan-link" class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                                <button type="submit" class="bg-wana-green text-white font-bold py-3 px-8 rounded-sm hover:bg-green-600 transition-colors uppercase">Simpan Kegiatan</button>
+                                <div class="flex gap-4 mt-4">
+                                    <button type="submit" id="btn-submit-kegiatan" class="w-full bg-wana-green text-white font-bold py-3 px-8 rounded-sm hover:bg-green-600 transition-colors uppercase">Simpan Kegiatan</button>
+                                    <button type="button" id="cancel-edit-kegiatan" onclick="window.cancelEdit('kegiatan')" class="hidden w-full bg-red-600 text-white font-bold py-3 px-8 rounded-sm hover:bg-red-700 transition-colors uppercase">Batal Edit</button>
+                                </div>
                             </form>
-                            <div class="mt-8 border-t border-gray-200 pt-4 max-w-3xl">
-                                <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Kegiatan (Klik untuk Edit)</h4>
-                                <div id="admin-list-kegiatan" class="space-y-2 max-h-40 overflow-y-auto"></div>
-                            </div>
                         </div>
 
                         <!-- Tab Artikel -->
                         <div id="tab-artikel" class="tab-content hidden">
-                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Manajemen Artikel</h3>
-                            <form id="form-artikel" onsubmit="window.handleFormSubmit(event, 'artikel')" class="space-y-4 max-w-3xl">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Formulir Artikel</h3>
+                            <form id="form-artikel" onsubmit="window.prepSubmit(event, 'artikel')" class="space-y-4 max-w-3xl">
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Gambar Artikel *</label><input type="file" id="artikel-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Sumber Gambar (Opsional)</label><input type="text" id="artikel-sumber" class="w-full px-3 py-2 border border-gray-300 outline-none" placeholder="Contoh: Freepik / Instagram @nama"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Judul Artikel *</label><input type="text" id="artikel-judul" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Kategori *</label><input type="text" id="artikel-kategori" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Penulis *</label><input type="text" id="artikel-penulis" required class="w-full px-3 py-2 border border-gray-300 outline-none" placeholder="Contoh: Tim Redaksi Wana Aksara"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Deskripsi Pendek *</label><textarea id="artikel-desc" required rows="2" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Isi Artikel (Paragraf Panjang) *</label><textarea id="artikel-isi" required rows="10" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                                <button type="submit" class="bg-black text-white font-bold py-3 px-8 rounded-sm hover:bg-gray-800 transition-colors uppercase">Simpan Artikel</button>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1">Isi Artikel (Paragraf Panjang) *</label>
+                                    <div id="editor-artikel" style="height: 350px;"></div>
+                                </div>
+                                <div class="flex gap-4 mt-4">
+                                    <button type="submit" id="btn-submit-artikel" class="w-full bg-black text-white font-bold py-3 px-8 rounded-sm hover:bg-gray-800 transition-colors uppercase">Simpan Artikel</button>
+                                    <button type="button" id="cancel-edit-artikel" onclick="window.cancelEdit('artikel')" class="hidden w-full bg-red-600 text-white font-bold py-3 px-8 rounded-sm hover:bg-red-700 transition-colors uppercase">Batal Edit</button>
+                                </div>
                             </form>
-                            <div class="mt-8 border-t border-gray-200 pt-4 max-w-3xl">
-                                <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Artikel (Klik untuk Edit)</h4>
-                                <div id="admin-list-artikel" class="space-y-2 max-h-40 overflow-y-auto"></div>
-                            </div>
                         </div>
 
                         <!-- Tab Kajian -->
                         <div id="tab-kajian" class="tab-content hidden">
-                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Manajemen Kajian</h3>
-                            <form id="form-kajian" onsubmit="window.handleFormSubmit(event, 'kajian')" class="space-y-4 max-w-3xl">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Formulir Kajian</h3>
+                            <form id="form-kajian" onsubmit="window.prepSubmit(event, 'kajian')" class="space-y-4 max-w-3xl">
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Gambar Cover *</label><input type="file" id="kajian-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
+                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Sumber Gambar (Opsional)</label><input type="text" id="kajian-sumber" class="w-full px-3 py-2 border border-gray-300 outline-none" placeholder="Contoh: Dokumen Organisasi"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Kategori *</label><input type="text" id="kajian-kategori" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Judul Kajian *</label><input type="text" id="kajian-judul" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Penulis/Peneliti *</label><input type="text" id="kajian-penulis" required class="w-full px-3 py-2 border border-gray-300 outline-none" placeholder="Contoh: Divisi Riset Strategis"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Abstrak (Pendek) *</label><textarea id="kajian-desc" required rows="2" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Isi Lengkap Kajian *</label><textarea id="kajian-isi" required rows="10" class="w-full px-3 py-2 border border-gray-300 outline-none"></textarea></div>
-                                <div><label class="block text-sm font-bold text-gray-700 mb-1">Link Dokumen Lengkap (Opsional)</label><input type="url" id="kajian-link" class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                                <button type="submit" class="bg-gray-800 text-white font-bold py-3 px-8 rounded-sm hover:bg-black transition-colors uppercase">Simpan Kajian</button>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1">Isi Lengkap Kajian *</label>
+                                    <div id="editor-kajian" style="height: 350px;"></div>
+                                </div>
+                                <div><label class="block text-sm font-bold text-gray-700 mt-2 mb-1">Link Dokumen Lengkap (Opsional)</label><input type="url" id="kajian-link" class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
+                                <div class="flex gap-4 mt-4">
+                                    <button type="submit" id="btn-submit-kajian" class="w-full bg-gray-800 text-white font-bold py-3 px-8 rounded-sm hover:bg-black transition-colors uppercase">Simpan Kajian</button>
+                                    <button type="button" id="cancel-edit-kajian" onclick="window.cancelEdit('kajian')" class="hidden w-full bg-red-600 text-white font-bold py-3 px-8 rounded-sm hover:bg-red-700 transition-colors uppercase">Batal Edit</button>
+                                </div>
                             </form>
-                            <div class="mt-8 border-t border-gray-200 pt-4 max-w-3xl">
-                                <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Kajian (Klik untuk Edit)</h4>
-                                <div id="admin-list-kajian" class="space-y-2 max-h-40 overflow-y-auto"></div>
-                            </div>
                         </div>
 
                         <!-- Tab Galeri -->
                         <div id="tab-galeri" class="tab-content hidden">
-                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Manajemen Galeri</h3>
-                            <form id="form-galeri" onsubmit="window.handleFormSubmit(event, 'galeri')" class="space-y-4 max-w-3xl">
+                            <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Formulir Galeri</h3>
+                            <form id="form-galeri" onsubmit="window.prepSubmit(event, 'galeri')" class="space-y-4 max-w-3xl">
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Upload Foto Ke Galeri *</label><input type="file" id="galeri-img" accept="image/*" class="w-full px-3 py-2 border border-gray-300 outline-none bg-white"></div>
                                 <div><label class="block text-sm font-bold text-gray-700 mb-1">Keterangan / Judul Foto *</label><input type="text" id="galeri-judul" required class="w-full px-3 py-2 border border-gray-300 outline-none"></div>
-                                <button type="submit" class="bg-wana-green text-white font-bold py-3 px-8 rounded-sm hover:bg-green-600 transition-colors uppercase">Simpan Foto Galeri</button>
+                                <div class="flex gap-4 mt-4">
+                                    <button type="submit" id="btn-submit-galeri" class="w-full bg-wana-green text-white font-bold py-3 px-8 rounded-sm hover:bg-green-600 transition-colors uppercase">Simpan Foto Galeri</button>
+                                    <button type="button" id="cancel-edit-galeri" onclick="window.cancelEdit('galeri')" class="hidden w-full bg-red-600 text-white font-bold py-3 px-8 rounded-sm hover:bg-red-700 transition-colors uppercase">Batal Edit</button>
+                                </div>
                             </form>
-                            <div class="mt-8 border-t border-gray-200 pt-4 max-w-3xl">
-                                <h4 class="font-bold text-sm text-gray-700 mb-3">Daftar Galeri (Klik untuk Edit/Hapus via DB)</h4>
-                                <div id="admin-list-galeri" class="space-y-2 max-h-40 overflow-y-auto"></div>
-                            </div>
                         </div>
 
                         <!-- Tab Pesan Masuk -->
                         <div id="tab-pesan" class="tab-content hidden">
                             <h3 class="text-2xl font-heading font-bold mb-6 border-b pb-2">Pesan Masuk (Hubungi Kami)</h3>
-                            <div id="admin-list-pesan" class="space-y-4">
-                                <!-- Pesan List Injected via JS -->
-                            </div>
+                            <div id="admin-list-pesan" class="space-y-4"></div>
                         </div>
 
                     </div>
@@ -452,7 +494,22 @@
         </div>
     </footer>
 
-    <!-- Modal Khusus Galeri & Kegiatan Popup -->
+    <!-- Modal Konfirmasi Simpan/Edit (NEW) -->
+    <div id="confirm-modal" class="fixed inset-0 bg-black/80 z-[130] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md rounded-lg shadow-2xl overflow-hidden font-sans transform scale-95 transition-transform duration-300" id="confirm-modal-content">
+            <div class="p-6 text-center">
+                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl"><i class="fas fa-question"></i></div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2 font-heading">Konfirmasi Data</h3>
+                <p class="text-gray-600 mb-6">Apakah Anda yakin semua data yang diinput sudah benar?</p>
+                <div class="flex gap-4 justify-center">
+                    <button onclick="window.closeConfirmModal()" class="px-6 py-2 bg-gray-200 text-gray-800 font-bold rounded-sm hover:bg-gray-300 transition-colors uppercase">Batal</button>
+                    <button onclick="window.executeSubmit()" class="px-6 py-2 bg-wana-green text-white font-bold rounded-sm hover:bg-green-600 transition-colors uppercase">Ya, Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detail Galeri & Kegiatan Popup -->
     <div id="detail-modal" class="fixed inset-0 bg-black/90 z-[120] hidden flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
         <div class="bg-white w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl relative font-sans transform scale-95 transition-transform duration-300 rounded-lg" id="detail-modal-content">
             <div class="relative overflow-hidden h-64 md:h-80 bg-gray-900 shrink-0">
@@ -506,6 +563,7 @@
         
         var db = { kegiatan: [], artikel: [], kajian: [], galeri: [], pesan: [], statVisitor: 0 };
         var isAdminLoggedIn = false;
+        var pendingSubmit = null; // Menyimpan data sementara untuk konfirmasi pop-up
 
         var teamMembers = [
             { role: "General Coordinator", name: "Hisyam Tsany Ananto", univ: "Institut Pertanian Bogor", img: "https://iili.io/nVIN0Cb.jpg", linkedin: "https://www.linkedin.com/in/hisyam-tsany-ananto-85b443272/" },
@@ -533,13 +591,10 @@
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active-nav'));
             var nav = document.getElementById('main-nav');
 
-            if (hash === 'admin' && !isAdminLoggedIn) {
-                window.location.hash = '#home'; return;
-            }
+            if (hash === 'admin' && !isAdminLoggedIn) { window.location.hash = '#home'; return; }
 
             if (hash.startsWith('baca/')) {
-                var parts = hash.split('/');
-                var type = parts[1]; var id = parts[2];
+                var parts = hash.split('/'); var type = parts[1]; var id = parts[2];
                 document.getElementById('baca-halaman').classList.add('active');
                 window.populateReadPage(type, id);
             } else {
@@ -549,15 +604,10 @@
                     var activeLink = document.querySelector(`.nav-link[href="#${hash}"]`);
                     if(activeLink) activeLink.classList.add('active-nav');
                     
-                    // Sembunyikan Navigasi Atas jika di Admin
                     if(hash === 'admin') nav.classList.add('hidden');
                     else nav.classList.remove('hidden');
 
-                    // Hitung visitor setiap kali kembali ke home
-                    if(hash === 'home' && window.supabase) {
-                        window.supabase.rpc('increment_website_visits').then(()=>{});
-                    }
-
+                    if(hash === 'home' && window.supabase) window.supabase.rpc('increment_website_visits').then(()=>{});
                 } else {
                     document.getElementById('home').classList.add('active');
                 }
@@ -569,12 +619,8 @@
         window.addEventListener('hashchange', window.handleRouting);
 
         // --- SISTEM SHARE SOCMED ---
-        window.shareWA = function() {
-            window.open('https://wa.me/?text=' + encodeURIComponent('Baca info menarik ini: ' + window.location.href), '_blank');
-        };
-        window.shareFB = function() {
-            window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
-        };
+        window.shareWA = function() { window.open('https://wa.me/?text=' + encodeURIComponent('Baca info menarik ini: ' + window.location.href), '_blank'); };
+        window.shareFB = function() { window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank'); };
         window.copyLink = function() {
             var tempInput = document.createElement("input");
             tempInput.value = window.location.href;
@@ -600,20 +646,17 @@
             if(document.getElementById('login-username').value === 'wanawani' && document.getElementById('login-password').value === 'wanipiro') {
                 window.closeLoginModal(); window.showToast('Login berhasil!');
                 document.getElementById('login-username').value = ''; document.getElementById('login-password').value = '';
-                isAdminLoggedIn = true;
-                window.location.hash = '#admin';
+                isAdminLoggedIn = true; window.location.hash = '#admin';
             } else { window.showToast('Username/Password Salah!', true); }
         };
         window.logoutAdmin = function() {
-            isAdminLoggedIn = false;
-            window.showToast('Berhasil logout.');
-            window.location.hash = '#home';
+            isAdminLoggedIn = false; window.showToast('Berhasil logout.'); window.location.hash = '#home';
         };
 
         window.switchTab = function(tid) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(tid).classList.remove('hidden');
-            ['dashboard','kegiatan','artikel','kajian','galeri','pesan'].forEach(t => {
+            ['dashboard','kelola','kegiatan','artikel','kajian','galeri','pesan'].forEach(t => {
                 var b = document.getElementById(`btn-tab-${t}`);
                 if(b) b.className = 'w-full text-left px-6 py-3 font-bold text-gray-400 border-l-4 border-transparent hover:text-white hover:bg-gray-800 text-sm';
             });
@@ -645,11 +688,12 @@
             var h = '';
             db[type].slice().reverse().forEach(i => {
                 var title = i.judul || i.nama;
-                h += `<div class="flex justify-between items-center p-3 bg-gray-50 border border-gray-200 text-sm hover:bg-gray-100 mb-2">
+                h += `<div class="flex justify-between items-center p-3 bg-white border border-gray-200 text-sm hover:bg-gray-50 mb-2 shadow-sm rounded-sm">
                         <span class="truncate font-bold pr-4 flex-1 text-gray-700">${title}</span>
-                        <button type="button" onclick="window.loadEdit('${type}', '${i.id}')" class="text-wana-green font-bold hover:underline whitespace-nowrap bg-white px-3 py-1 border border-gray-200 shadow-sm"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="button" onclick="window.loadEdit('${type}', '${i.id}')" class="text-wana-green font-bold hover:underline whitespace-nowrap bg-gray-100 px-3 py-1 border border-gray-200 shadow-sm"><i class="fas fa-edit"></i> Edit</button>
                       </div>`;
             });
+            if(h==='') h = `<p class="text-xs text-gray-400 p-2">Belum ada data ${type}.</p>`;
             c.innerHTML = h;
         };
 
@@ -659,7 +703,7 @@
             var list = [];
             db.artikel.forEach(a => list.push({t: a.judul, v: a.views||0, cat:'Artikel'}));
             db.kajian.forEach(k => list.push({t: k.judul, v: k.views||0, cat:'Kajian'}));
-            list.sort((a,b) => b.v - a.v); // Terpopuler
+            list.sort((a,b) => b.v - a.v); 
             
             var h = '';
             list.forEach(l => {
@@ -689,25 +733,33 @@
             c.innerHTML = h;
         };
 
+        // --- SISTEM EDIT & KONFIRMASI POPUP ---
         window.loadEdit = function(type, id) {
             var i = db[type].find(x => String(x.id) === String(id));
             if(!i) return;
+            
+            // Pindah ke tab form edit
+            window.switchTab('tab-' + type);
             
             if(type === 'kegiatan') {
                 document.getElementById('kegiatan-nama').value = i.nama;
                 document.getElementById('kegiatan-tgl').value = i.tgl;
                 document.getElementById('kegiatan-waktu').value = i.waktu;
                 document.getElementById('kegiatan-lokasi').value = i.lokasi;
+                document.getElementById('kegiatan-sumber').value = i.sumber_gambar || '';
+                if(window.quillKegiatan) window.quillKegiatan.root.innerHTML = i.isi || '';
             } else if (type === 'galeri') {
                 document.getElementById('galeri-judul').value = i.judul;
             } else {
                 document.getElementById(type + '-judul').value = i.judul;
                 document.getElementById(type + '-kategori').value = i.kategori;
                 document.getElementById(type + '-penulis').value = i.penulis || '';
+                document.getElementById(type + '-sumber').value = i.sumber_gambar || '';
+                if(type === 'artikel' && window.quillArtikel) window.quillArtikel.root.innerHTML = i.isi || '';
+                if(type === 'kajian' && window.quillKajian) window.quillKajian.root.innerHTML = i.isi || '';
             }
             
             if(document.getElementById(type + '-desc')) document.getElementById(type + '-desc').value = i.desc || '';
-            if(document.getElementById(type + '-isi')) document.getElementById(type + '-isi').value = i.isi || '';
             if(document.getElementById(type + '-link')) document.getElementById(type + '-link').value = i.link || '';
             
             var imgInput = document.getElementById(type + '-img');
@@ -716,11 +768,119 @@
             
             var form = document.getElementById('form-' + type);
             form.setAttribute('data-edit-id', id);
-            form.querySelector('button[type="submit"]').innerText = 'Update Data';
+            form.querySelector('button[type="submit"]').innerText = 'Update Data ' + type;
+            
+            // Munculkan tombol Batal Edit
+            var btnCancel = document.getElementById('cancel-edit-' + type);
+            if(btnCancel) btnCancel.classList.remove('hidden');
+
             window.showToast('Mode Edit Aktif: ' + (i.judul || i.nama));
         };
 
-        // --- RENDER KONTEN (HOME, KEGIATAN, ARTIKEL, KAJIAN) ---
+        window.cancelEdit = function(type) {
+            var form = document.getElementById('form-' + type);
+            form.removeAttribute('data-edit-id');
+            form.reset();
+            
+            var imgInput = document.getElementById(type + '-img');
+            if(imgInput) { imgInput.required = true; imgInput.previousElementSibling.innerText = 'Upload Gambar *'; }
+            form.querySelector('button[type="submit"]').innerText = 'Simpan ' + type;
+            
+            var btnCancel = document.getElementById('cancel-edit-' + type);
+            if(btnCancel) btnCancel.classList.add('hidden');
+            
+            if(type === 'kegiatan' && window.quillKegiatan) window.quillKegiatan.root.innerHTML = '';
+            if(type === 'artikel' && window.quillArtikel) window.quillArtikel.root.innerHTML = '';
+            if(type === 'kajian' && window.quillKajian) window.quillKajian.root.innerHTML = '';
+
+            window.showToast('Edit Dibatalkan.');
+            window.switchTab('tab-kelola');
+        };
+
+        window.prepSubmit = function(e, type) {
+            e.preventDefault();
+            window.pendingSubmit = { formEvent: e, formType: type };
+            var m = document.getElementById('confirm-modal'), c = document.getElementById('confirm-modal-content');
+            m.classList.remove('hidden'); void m.offsetWidth; m.classList.remove('opacity-0'); c.classList.remove('scale-95');
+        };
+
+        window.closeConfirmModal = function() {
+            var m = document.getElementById('confirm-modal'), c = document.getElementById('confirm-modal-content');
+            m.classList.add('opacity-0'); c.classList.add('scale-95'); setTimeout(() => m.classList.add('hidden'), 300);
+            window.pendingSubmit = null;
+        };
+
+        // --- UPLOAD & EXECUTE DB ---
+        window.uploadFile = async function(file) {
+            try {
+                var e = file.name.split('.').pop(), n = Date.now()+'.'+e;
+                var { error: err } = await window.supabase.storage.from('wana-images').upload(n, file);
+                if(err) throw err;
+                return window.supabase.storage.from('wana-images').getPublicUrl(n).data.publicUrl;
+            } catch(e) { throw new Error("Gagal upload gambar! Pastikan folder Storage 'wana-images' sudah dibuat di Supabase."); }
+        };
+
+        window.executeSubmit = async function() {
+            if(!window.pendingSubmit) return;
+            var e = window.pendingSubmit.formEvent;
+            var type = window.pendingSubmit.formType;
+            window.closeConfirmModal();
+
+            var form = e.target, editId = form.getAttribute('data-edit-id');
+            var btn = form.querySelector('button[type="submit"]'), ori = btn.innerText;
+            btn.innerText = 'Menyimpan...'; btn.disabled = true;
+            
+            try {
+                var d = {}, fileInput = document.getElementById(type+'-img');
+                if(fileInput && fileInput.files.length > 0) { d.imgUrl = await window.uploadFile(fileInput.files[0]); } 
+                else if(!editId && fileInput) { throw new Error("Gambar wajib diupload untuk data baru!"); }
+
+                if(type==='kegiatan') { d.nama = document.getElementById('kegiatan-nama').value; d.desc = document.getElementById('kegiatan-desc').value; d.isi = window.quillKegiatan.root.innerHTML; d.sumber_gambar = document.getElementById('kegiatan-sumber').value; d.tgl = document.getElementById('kegiatan-tgl').value; d.waktu = document.getElementById('kegiatan-waktu').value; d.lokasi = document.getElementById('kegiatan-lokasi').value; d.link = document.getElementById('kegiatan-link').value; }
+                if(type==='artikel') { d.judul = document.getElementById('artikel-judul').value; d.kategori = document.getElementById('artikel-kategori').value; d.penulis = document.getElementById('artikel-penulis').value; d.desc = document.getElementById('artikel-desc').value; d.isi = window.quillArtikel.root.innerHTML; d.sumber_gambar = document.getElementById('artikel-sumber').value; }
+                if(type==='kajian') { d.judul = document.getElementById('kajian-judul').value; d.kategori = document.getElementById('kajian-kategori').value; d.penulis = document.getElementById('kajian-penulis').value; d.desc = document.getElementById('kajian-desc').value; d.isi = window.quillKajian.root.innerHTML; d.sumber_gambar = document.getElementById('kajian-sumber').value; d.link = document.getElementById('kajian-link').value; }
+                if(type==='galeri') { d.judul = document.getElementById('galeri-judul').value; }
+
+                if(editId) {
+                    var { error } = await window.supabase.from(type).update(d).eq('id', editId);
+                    if(error) throw error; window.showToast('Data berhasil diperbarui!');
+                } else {
+                    var { error } = await window.supabase.from(type).insert([d]);
+                    if(error) throw error; window.showToast('Data baru sukses dipublikasikan!');
+                }
+                
+                var { data: freshData } = await window.supabase.from(type).select('*').order('created_at', { ascending: true });
+                if(freshData) db[type] = freshData;
+
+                window.cancelEdit(type); // Reset the form and go to manage tab
+                
+                if(type==='kegiatan') window.renderKegiatan();
+                if(type==='artikel') window.renderArtikel();
+                if(type==='kajian') window.renderKajian();
+                if(type==='galeri') window.renderGaleri();
+                window.renderAdminStats();
+                
+            } catch(err) { window.showToast("Error: " + err.message, true); } 
+            finally { btn.innerText = ori; btn.disabled = false; }
+        };
+
+        window.submitPesan = async function(e) {
+            e.preventDefault();
+            var btn = e.target.querySelector('button[type="submit"]'), ori = btn.innerText;
+            btn.innerText = 'Mengirim...'; btn.disabled = true;
+            try {
+                var d = { nama: document.getElementById('pesan-nama').value, email: document.getElementById('pesan-email').value, pesan: document.getElementById('pesan-isi').value };
+                var { error } = await window.supabase.from('pesan').insert([d]);
+                if(error) throw error; 
+                window.showToast('Terima kasih! Pesan Anda berhasil dikirim ke Admin.');
+                e.target.reset();
+                
+                var { data: freshPesan } = await window.supabase.from('pesan').select('*').order('created_at', { ascending: true });
+                if(freshPesan) { db.pesan = freshPesan; window.renderAdminPesan(); }
+            } catch(err) { window.showToast('Gagal mengirim pesan: ' + err.message, true); } 
+            finally { btn.innerText = ori; btn.disabled = false; }
+        };
+
+        // --- RENDER KONTEN (HOME, KEGIATAN, dll) ---
         window.renderKegiatan = function() {
             var c = document.getElementById('kegiatan-container'), e = document.getElementById('empty-kegiatan');
             if(!db.kegiatan || db.kegiatan.length === 0) { e.classList.remove('hidden'); c.innerHTML=''; return; }
@@ -811,12 +971,11 @@
             c.innerHTML = h; window.renderAdminList('galeri');
         };
 
-        // --- READ PAGE (ARTIKEL & KAJIAN) ---
+        // --- BACA PAGE (ARTIKEL & KAJIAN) ---
         window.populateReadPage = function(type, id) {
             var i = db[type] ? db[type].find(x => String(x.id) === String(id)) : null;
             if(!i) return;
             
-            // Increment views (Server-side update for next time)
             if(window.supabase) {
                 if(type === 'artikel') window.supabase.rpc('increment_article_views', {article_id: id}).then(()=>{});
                 if(type === 'kajian') window.supabase.rpc('increment_kajian_views', {kajian_id: id}).then(()=>{});
@@ -831,9 +990,13 @@
             document.getElementById('baca-penulis').innerText = i.penulis || 'Wana Aksara';
             document.getElementById('baca-tanggal').innerText = tglFmt;
             document.getElementById('baca-waktu').innerText = wktFmt;
-            document.getElementById('baca-views').innerText = (i.views || 0) + 1; // +1 for current load
+            document.getElementById('baca-views').innerText = (i.views || 0) + 1;
             document.getElementById('baca-img').src = i.imgUrl;
-            document.getElementById('baca-isi').innerText = i.isi || i.desc;
+            document.getElementById('baca-isi').innerHTML = i.isi || i.desc;
+            
+            var elSumber = document.getElementById('baca-sumber-img');
+            if (i.sumber_gambar) { elSumber.innerText = 'Sumber Gambar: ' + i.sumber_gambar; elSumber.classList.remove('hidden'); } 
+            else { elSumber.classList.add('hidden'); }
             
             var act = document.getElementById('baca-action');
             if(type === 'kajian' && i.link) {
@@ -844,16 +1007,13 @@
             document.getElementById('baca-kembali').href = `#${type}`;
         };
 
-        // --- MODAL KHUSUS KEGIATAN & GALERI ---
         window.showDetailModal = function(type, id) {
             var i = db[type].find(x => String(x.id) === String(id));
             if(!i) return;
             var m = document.getElementById('detail-modal'), c = document.getElementById('detail-modal-content');
-            var imgEl = document.getElementById('detail-img'), bdy = document.getElementById('detail-body');
-            var hdr = document.getElementById('detail-header');
+            var imgEl = document.getElementById('detail-img'), bdy = document.getElementById('detail-body'), hdr = document.getElementById('detail-header');
 
             imgEl.src = i.imgUrl;
-            
             if (type === 'galeri') {
                 hdr.classList.add('hidden'); 
                 bdy.innerHTML = `<h2 class="text-2xl font-bold text-center mb-2 font-heading uppercase">${i.judul}</h2>`;
@@ -861,17 +1021,13 @@
                 hdr.classList.remove('hidden');
                 document.getElementById('detail-category').innerText = 'Kegiatan';
                 document.getElementById('detail-title').innerText = i.nama;
-                
                 var d = new Date(i.tgl).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
                 var meta = `<span class="flex gap-2 items-center"><i class="far fa-calendar text-[#66cc00]"></i> ${d}</span>
                             <span class="flex gap-2 items-center"><i class="far fa-clock text-[#66cc00]"></i> ${i.waktu} WIB</span>
                             <span class="flex gap-2 items-center"><i class="fas fa-map-marker-alt text-[#66cc00]"></i> ${i.lokasi}</span>`;
                 var act = i.link ? `<a href="${i.link}" target="_blank" class="inline-block bg-wana-yellow text-black font-bold font-heading px-8 py-3 hover:bg-yellow-500 text-lg uppercase">Daftar Kegiatan</a>` : '';
-                
-                bdy.innerHTML = `
-                    <div class="flex flex-wrap gap-4 text-sm text-gray-500 mb-8 pb-4 border-b border-gray-200 font-medium">${meta}</div>
-                    <div class="text-gray-800 text-lg leading-relaxed whitespace-pre-wrap">${i.isi || i.desc}</div>
-                    ${act ? `<div class="mt-10">${act}</div>` : ''}`;
+                bdy.innerHTML = `<div class="flex flex-wrap gap-4 text-sm text-gray-500 mb-8 pb-4 border-b border-gray-200 font-medium">${meta}</div>
+                    <div class="text-gray-800 text-lg leading-relaxed whitespace-pre-wrap">${i.isi || i.desc}</div>${act ? `<div class="mt-10">${act}</div>` : ''}`;
             }
             m.classList.remove('hidden'); void m.offsetWidth; m.classList.remove('opacity-0'); c.classList.remove('scale-95');
         };
@@ -881,80 +1037,15 @@
             m.classList.add('opacity-0'); c.classList.add('scale-95'); setTimeout(() => m.classList.add('hidden'), 300);
         };
 
-        // --- UPLOAD & FORMS ---
-        window.uploadFile = async function(file) {
-            try {
-                var e = file.name.split('.').pop(), n = Date.now()+'.'+e;
-                var { error: err } = await window.supabase.storage.from('wana-images').upload(n, file);
-                if(err) throw err;
-                return window.supabase.storage.from('wana-images').getPublicUrl(n).data.publicUrl;
-            } catch(e) { throw new Error("Gagal upload gambar! Pastikan folder Storage 'wana-images' sudah dibuat di Supabase."); }
-        };
-
-        window.handleFormSubmit = async function(e, type) {
-            e.preventDefault();
-            var form = e.target, editId = form.getAttribute('data-edit-id');
-            var btn = form.querySelector('button[type="submit"]'), ori = btn.innerText;
-            btn.innerText = 'Menyimpan...'; btn.disabled = true;
-            
-            try {
-                var d = {}, fileInput = document.getElementById(type+'-img');
-                if(fileInput && fileInput.files.length > 0) { d.imgUrl = await window.uploadFile(fileInput.files[0]); } 
-                else if(!editId && fileInput) { throw new Error("Gambar wajib diupload untuk data baru!"); }
-
-                if(type==='kegiatan') { d.nama = document.getElementById('kegiatan-nama').value; d.desc = document.getElementById('kegiatan-desc').value; d.isi = document.getElementById('kegiatan-isi').value; d.tgl = document.getElementById('kegiatan-tgl').value; d.waktu = document.getElementById('kegiatan-waktu').value; d.lokasi = document.getElementById('kegiatan-lokasi').value; d.link = document.getElementById('kegiatan-link').value; }
-                if(type==='artikel') { d.judul = document.getElementById('artikel-judul').value; d.kategori = document.getElementById('artikel-kategori').value; d.penulis = document.getElementById('artikel-penulis').value; d.desc = document.getElementById('artikel-desc').value; d.isi = document.getElementById('artikel-isi').value; }
-                if(type==='kajian') { d.judul = document.getElementById('kajian-judul').value; d.kategori = document.getElementById('kajian-kategori').value; d.penulis = document.getElementById('kajian-penulis').value; d.desc = document.getElementById('kajian-desc').value; d.isi = document.getElementById('kajian-isi').value; d.link = document.getElementById('kajian-link').value; }
-                if(type==='galeri') { d.judul = document.getElementById('galeri-judul').value; }
-
-                if(editId) {
-                    var { error } = await window.supabase.from(type).update(d).eq('id', editId);
-                    if(error) throw error; window.showToast('Data berhasil diperbarui!');
-                } else {
-                    var { error } = await window.supabase.from(type).insert([d]);
-                    if(error) throw error; window.showToast('Data baru sukses dipublikasikan!');
-                }
-                
-                // Refresh Data Loka
-                var { data: freshData } = await window.supabase.from(type).select('*').order('created_at', { ascending: true });
-                if(freshData) db[type] = freshData;
-
-                form.removeAttribute('data-edit-id'); btn.innerText = 'Simpan Data';
-                if(fileInput) { fileInput.required = true; fileInput.previousElementSibling.innerText = 'Upload Gambar *'; }
-                form.reset();
-                
-                if(type==='kegiatan') window.renderKegiatan();
-                if(type==='artikel') window.renderArtikel();
-                if(type==='kajian') window.renderKajian();
-                if(type==='galeri') window.renderGaleri();
-                window.renderAdminStats();
-                
-                // Admin page tetap stay, tidak keluar
-            } catch(err) { window.showToast("Error: " + err.message, true); } 
-            finally { btn.innerText = ori; btn.disabled = false; }
-        };
-
-        window.submitPesan = async function(e) {
-            e.preventDefault();
-            var btn = e.target.querySelector('button[type="submit"]'), ori = btn.innerText;
-            btn.innerText = 'Mengirim...'; btn.disabled = true;
-            try {
-                var d = { nama: document.getElementById('pesan-nama').value, email: document.getElementById('pesan-email').value, pesan: document.getElementById('pesan-isi').value };
-                var { error } = await window.supabase.from('pesan').insert([d]);
-                if(error) throw error; 
-                window.showToast('Terima kasih! Pesan Anda berhasil dikirim ke Admin.');
-                e.target.reset();
-                
-                // Update Admin view silently
-                var { data: freshPesan } = await window.supabase.from('pesan').select('*').order('created_at', { ascending: true });
-                if(freshPesan) { db.pesan = freshPesan; window.renderAdminPesan(); }
-            } catch(err) { window.showToast('Gagal mengirim pesan: ' + err.message, true); } 
-            finally { btn.innerText = ori; btn.disabled = false; }
-        };
-
         // --- INISIALISASI UTAMA ---
         window.onload = async function() {
             window.renderTeam();
+            
+            var toolbarOptions = [['bold', 'italic', 'underline'], [{ 'header': [1, 2, 3, false] }], [{ 'list': 'ordered'}, { 'list': 'bullet' }], [{ 'indent': '-1'}, { 'indent': '+1' }], [{ 'align': [] }], ['clean']];
+            window.quillKegiatan = new Quill('#editor-kegiatan', { theme: 'snow', modules: { toolbar: toolbarOptions } });
+            window.quillArtikel = new Quill('#editor-artikel', { theme: 'snow', modules: { toolbar: toolbarOptions } });
+            window.quillKajian = new Quill('#editor-kajian', { theme: 'snow', modules: { toolbar: toolbarOptions } });
+
             try {
                 window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
                 var [resKeg, resArt, resKaj, resGal, resPesan, resStat] = await Promise.all([
@@ -977,7 +1068,7 @@
                 window.renderAdminStats(); window.renderAdminPesan();
                 window.handleRouting(); 
             } catch (err) {
-                console.error("Supabase tidak merespon/URL salah:", err);
+                console.error("Supabase Error:", err);
                 window.handleRouting();
             }
         };
